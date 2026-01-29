@@ -1,0 +1,418 @@
+/* Trapezoid buttons for Infinite Wraps */
+
+.btn-trapezoid,
+.btn-trapezoid-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.15s ease, border-color 0.2s ease;
+}
+
+/* Solid red trapezoid */
+.btn-trapezoid {
+  background: #a30000; /* darker red */
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+}
+
+.btn-trapezoid:hover {
+  background: #ffffff;
+  color: #050608;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Outline trapezoid */
+.btn-trapezoid-outline {
+  background: transparent;
+  color: #e5e7eb;
+  border: 1px solid rgba(212, 212, 216, 0.7);
+}
+
+.btn-trapezoid-outline:hover {
+  border-color: #a30000;
+  color: #a30000;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+/* Center nav spacing fix */
+
+header nav a {
+  padding: 0.4rem 0.75rem; /* creates breathing room */
+  letter-spacing: 0.28em; /* slightly wider */
+  position: relative;
+}
+
+/* Subtle underline hover (luxury feel) */
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: #a30000;
+  transform: translateX(-50%);
+  transition: width 0.2s ease;
+}
+
+header nav a:hover::after {
+  width: 60%;
+}
+/* Optical centering fix for main nav */
+
+header nav {
+  transform: translateX(18px);
+}
+@media (min-width: 768px) {
+  header nav {
+    transform: translateX(18px);
+  }
+}
+/* ----------------------
+   Animated Infinity Icon
+   ---------------------- */
+
+.hero-brand-row {
+  /* slight "push" animation when the infinity appears */
+  animation: hero-row-shift 1.4s ease-out forwards;
+  transform-origin: center;
+}
+
+.infinity-logo path {
+  fill: none;
+  stroke: #a30000;            /* darker red */
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  filter: drop-shadow(0 0 10px rgba(163, 0, 0, 0.65));
+  opacity: 0;
+  animation:
+    infinity-draw-side 1.4s ease-out forwards,
+    infinity-pulse-side 3.5s ease-in-out infinite 1.4s;
+}
+
+/* infinity draws in from nothing */
+@keyframes infinity-draw-side {
+  0% {
+    stroke-dashoffset: 420;
+    opacity: 0;
+    transform: translateX(8px) scale(0.85);
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* soft neon pulse after it’s drawn */
+@keyframes infinity-pulse-side {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(163, 0, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(163, 0, 0, 1));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(163, 0, 0, 0.6));
+  }
+}
+
+/* row "nudged" slightly as infinity settles in */
+@keyframes hero-row-shift {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* ----------------------
+   Animated Infinity Icon
+   ---------------------- */
+
+.hero-brand-row {
+  /* slight "push" animation when the infinity appears */
+  animation: hero-row-shift 1.4s ease-out forwards;
+  transform-origin: center;
+}
+
+.infinity-logo path {
+  fill: none;
+  stroke: #ffffff;            /* WHITE infinity */
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.263));
+  opacity: 0;
+  animation:
+    infinity-draw-side 1.4s ease-out forwards,
+    infinity-pulse-side 3.5s ease-in-out infinite 1.4s;
+}
+
+/* infinity draws in from nothing */
+@keyframes infinity-draw-side {
+  0% {
+    stroke-dashoffset: 260;
+    opacity: 0;
+    transform: translateX(6px) scale(0.9);
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* soft white neon pulse after it’s drawn */
+@keyframes infinity-pulse-side {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+  }
+}
+
+/* row "nudged" slightly as infinity settles in */
+@keyframes hero-row-shift {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* Nav logo: infinity wraps stacked mark */
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.nav-infinity {
+  width: 40px;       /* tweak this if you want it bigger/smaller */
+  height: auto;
+}
+
+.nav-infinity path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 6;   /* thicker line like the reference logo */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.nav-logo {
+  text-decoration: none;
+}
+
+.nav-infinity-icon {
+  font-size: 1.6rem; /* adjust size if you want */
+  line-height: 1;
+  color: #ffffff;
+}
+.nav-infinity-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #ffffff;
+  display: inline-block;
+  transform: translateX(-2.5px); /* tiny optical correction */
+}
+/* Hero infinity icon (matches nav) */
+
+.hero-infinity-icon {
+  font-size: 3rem; /* size for desktop */
+  color: #ffffff;
+  line-height: 1;
+  display: inline-block;
+
+  /* same optical correction as nav */
+  transform: translateX(-2px) scale(0.95);
+  opacity: 0;
+
+  animation: hero-infinity-in 1.2s ease-out forwards;
+}
+
+/* Slightly smaller on mobile */
+@media (max-width: 640px) {
+  .hero-infinity-icon {
+    font-size: 2.4rem;
+  }
+}
+
+/* Smooth entrance */
+@keyframes hero-infinity-in {
+  from {
+    opacity: 0;
+    transform: translateX(-2px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-2px) scale(1);
+  }
+}
+/* Hero infinity icon — matches nav, drawn-in reveal */
+
+.hero-infinity-icon {
+  font-size: 2.6rem; /* slightly smaller than before */
+  color: #ffffff;
+  line-height: 1;
+  display: inline-block;
+
+  /* optical correction */
+  transform: translateX(-2px);
+
+  /* draw-in illusion */
+  clip-path: inset(0 100% 0 0);
+  animation: hero-infinity-draw 1.2s ease-out forwards;
+}
+
+/* Mobile size */
+@media (max-width: 640px) {
+  .hero-infinity-icon {
+    font-size: 2.2rem;
+  }
+}
+
+/* Draw-in reveal (left → right) */
+@keyframes hero-infinity-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+/* -------------------------------
+   ABOUT SECTION – CAR DRAMA MODE
+   ------------------------------- */
+
+/* Oversized car with bleed-off */
+.about-car-img {
+  width: 140%;
+  max-width: none;
+  transform: translateX(-22%) translateY(6%);
+  filter: drop-shadow(0 40px 90px rgba(0,0,0,0.85));
+  position: relative;
+  z-index: 3;
+}
+
+/* Paint / energy glow behind car */
+.car-paint-fx {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 520px;
+  height: 520px;
+  background:
+    radial-gradient(circle at center,
+      rgba(163,0,0,0.45) 0%,
+      rgba(163,0,0,0.25) 30%,
+      rgba(163,0,0,0.12) 55%,
+      transparent 70%);
+  filter: blur(60px);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Extra subtle motion haze */
+.car-paint-fx::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,0.08) 50%,
+      transparent 100%
+    );
+  filter: blur(40px);
+  opacity: 0.4;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .about-car-img {
+    width: 155%;
+    transform: translateX(-28%) translateY(4%);
+  }
+}
+
+/* Mobile fallback (no bleed on small screens) */
+@media (max-width: 768px) {
+  .about-car-img {
+    width: 100%;
+    transform: none;
+  }
+
+  .car-paint-fx {
+    display: none;
+  }
+}
+/* -------------------------
+   HERO → ABOUT SMOOTH FADE
+   ------------------------- */
+
+/* Bottom fade of hero */
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 6, 8, 0) 0%,
+    rgba(5, 6, 8, 0.6) 40%,
+    #050608d0 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Top fade of About section */
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(
+    to top,
+    rgba(5, 6, 8, 0) 0%,
+    rgba(5, 6, 8, 0.6) 40%,
+    #050608 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
