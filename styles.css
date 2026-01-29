@@ -416,3 +416,10 @@ header nav {
   pointer-events: none;
   z-index: 1;
 }
+/* Move logo 2.5px to the right on mobile + iPad */
+@media (max-width: 1024px) {
+  .nav-logo {
+    position: relative;
+    left: 2.5px;
+  }
+}
