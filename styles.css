@@ -417,9 +417,10 @@ header nav {
   z-index: 1;
 }
 /* Move logo 2.5px to the right on mobile + iPad */
+/* Nudge header logo 2.5px to the right on mobile + iPad */
 @media (max-width: 1024px) {
-  .nav-logo {
+  header .nav-logo {
     position: relative;
-    left: 2.5px;
+    transform: translateX(2.5px);
   }
 }
