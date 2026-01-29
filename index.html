@@ -59,21 +59,17 @@
 <!-- NAVBAR -->
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 w-full z-30 bg-black/70 backdrop-blur-md border-b border-white/10">
-  <div
-    class="max-w-7xl mx-auto px-6 py-4
-           flex items-center justify-between
-           md:grid md:grid-cols-[auto_1fr_auto_1fr_auto]"
-  >
+  <div class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-[auto_1fr_auto_1fr_auto] items-center">
 
-    <!-- LOGO (centered on mobile, same look on desktop) -->
-    <div class="flex-1 flex justify-center md:block md:flex-none">
+    <!-- LOGO -->
+    <div class="col-start-1 md:col-auto flex justify-center md:justify-start">
       <a href="#home" class="nav-logo inline-flex flex-col items-center leading-none">
-        <!-- Infinity icon on top -->
+        <!-- Infinity icon -->
         <div class="mb-1">
           <i class="fa-solid fa-infinity nav-infinity-icon"></i>
         </div>
 
-        <!-- INFINITE / WRAPS stack -->
+        <!-- INFINITE / WRAPS -->
         <div class="text-center">
           <div class="font-display text-[0.7rem] tracking-[0.45em] uppercase">
             INFINITE
@@ -90,10 +86,10 @@
       </a>
     </div>
 
-    <!-- spacer (desktop only) -->
+    <!-- spacer -->
     <div class="hidden md:block"></div>
 
-    <!-- CENTER NAV (desktop only) -->
+    <!-- CENTER NAV -->
     <nav class="hidden md:flex justify-center gap-10 text-xs tracking-[0.25em] uppercase">
       <a href="#home" class="hover:text-redline transition">Home</a>
       <a href="#about" class="hover:text-redline transition">About</a>
@@ -101,22 +97,19 @@
       <a href="#gallery" class="hover:text-redline transition">Gallery</a>
     </nav>
 
-    <!-- spacer (desktop only) -->
+    <!-- spacer -->
     <div class="hidden md:block"></div>
 
     <!-- RIGHT ACTIONS -->
-    <div class="flex justify-end items-center gap-4 flex-none">
-      <!-- Instagram (no square, just icon) -->
+    <div class="flex justify-end items-center gap-4 col-start-5">
       <a
         href="https://instagram.com/infinitewraps"
         target="_blank"
         class="hidden md:inline-flex items-center gap-2 text-chrome/80 hover:text-redline transition"
-        aria-label="Instagram"
       >
         <i class="fa-brands fa-instagram text-base"></i>
       </a>
 
-      <!-- Contact button -->
       <a
         href="#contact"
         class="hidden md:inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
@@ -124,7 +117,6 @@
         Contact
       </a>
 
-      <!-- Mobile menu -->
       <button
         id="nav-toggle"
         class="md:hidden w-9 h-9 border border-white/40 hover:border-redline transition"
