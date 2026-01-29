@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services • Infinite Wraps</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jet: "#050608",
+            chrome: "#d4d4d8",
+            redline: "#a30000", /* darker red */
+          },
+          fontFamily: {
+            display: ["Orbitron", "sans-serif"],
+            body: ["Inter", "system-ui", "sans-serif"],
+          },
+          keyframes: {
+            marquee: {
+              "0%": { transform: "translateX(0%)" },
+              "100%": { transform: "translateX(-50%)" },
+            },
+          },
+          animation: {
+            marquee: "marquee 25s linear infinite",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Custom files -->
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body class="bg-jet text-white font-body overflow-x-hidden">
+
+<!-- VIDEO BACKGROUND -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <video autoplay muted loop playsinline class="w-full h-full object-cover">
+    <source src="assets/m4.mp4" type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,212,216,0.18),_transparent_55%)]"></div>
+</div>
+
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-30 bg-black/70 backdrop-blur-md border-b border-white/10">
+  <div class="relative max-w-7xl mx-auto px-6 py-4 grid grid-cols-[auto_1fr_auto_1fr_auto] items-center">
+
+    <!-- LOGO -->
+    <div class="col-start-1 md:col-auto flex justify-center md:justify-start">
+      <a
+        href="index.html#home"
+        class="nav-logo inline-flex flex-col items-center leading-none
+               absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+               md:static md:transform-none"
+      >
+        <!-- Infinity icon -->
+        <div class="mb-1">
+          <i class="fa-solid fa-infinity nav-infinity-icon"></i>
+        </div>
+
+        <!-- INFINITE / WRAPS -->
+        <div class="text-center">
+          <div class="font-display text-[0.7rem] tracking-[0.45em] uppercase">
+            INFINITE
+          </div>
+
+          <div class="mt-1 flex items-center justify-center gap-2">
+            <span class="h-px w-6 bg-white/75"></span>
+            <span class="font-display text-[0.6rem] tracking-[0.4em] uppercase">
+              WRAPS
+            </span>
+            <span class="h-px w-6 bg-white/75"></span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- spacer -->
+    <div class="hidden md:block"></div>
+
+    <!-- CENTER NAV -->
+    <nav class="hidden md:flex justify-center gap-10 text-xs tracking-[0.25em] uppercase">
+      <a href="index.html#home" class="hover:text-redline transition">Home</a>
+      <a href="index.html#about" class="hover:text-redline transition">About</a>
+      <a href="#services" class="hover:text-redline transition">Services</a>
+      <a href="gallery.html#gallery" class="hover:text-redline transition">Gallery</a>
+    </nav>
+
+    <!-- spacer -->
+    <div class="hidden md:block"></div>
+
+    <!-- RIGHT ACTIONS -->
+    <div class="flex justify-end items-center gap-4 col-start-5">
+      <a
+        href="https://instagram.com/infinitewraps"
+        target="_blank"
+        class="hidden md:inline-flex items-center gap-2 text-chrome/80 hover:text-redline transition"
+      >
+        <i class="fa-brands fa-instagram text-base"></i>
+      </a>
+
+      <a
+        href="index.html#contact"
+        class="hidden md:inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Contact
+      </a>
+
+      <button
+        id="nav-toggle"
+        class="md:hidden w-9 h-9 border border-white/40 hover:border-redline transition"
+        aria-label="Open menu"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE FULLSCREEN NAV -->
+<div id="mobile-nav" class="fixed inset-0 z-40 hidden bg-black/95">
+  <div class="h-full flex flex-col">
+
+    <!-- top -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <div class="leading-none">
+        <div class="font-display text-sm tracking-[0.4em] uppercase">INFINITE</div>
+        <div class="text-[0.6rem] tracking-[0.35em] text-chrome/70 uppercase">Wraps</div>
+      </div>
+      <button id="nav-close" class="w-9 h-9 border border-white/40 hover:border-redline transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- links -->
+    <nav class="flex-1 flex flex-col items-center justify-center gap-8 text-sm tracking-[0.3em] uppercase">
+      <a href="index.html#home" class="nav-link hover:text-redline">Home</a>
+      <a href="index.html#about" class="nav-link hover:text-redline">About</a>
+      <a href="#services" class="nav-link hover:text-redline">Services</a>
+      <a href="gallery.html#gallery" class="nav-link hover:text-redline">Gallery</a>
+
+      <a
+        href="index.html#contact"
+        class="mt-6 font-display text-xs tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Get a Quote
+      </a>
+
+      <a
+        href="https://instagram.com/infinitewraps"
+        target="_blank"
+        class="mt-4 flex items-center gap-2 text-chrome/80 hover:text-redline transition"
+      >
+        <i class="fa-brands fa-instagram"></i>
+        <span class="text-xs tracking-[0.25em] uppercase">Instagram</span>
+      </a>
+    </nav>
+
+  </div>
+</div>
+
+<!-- HERO -->
+<main class="min-h-[70vh] flex items-center justify-center text-center px-4 pt-28 pb-10">
+  <section class="max-w-3xl">
+
+    <p class="text-xs tracking-[0.3em] uppercase text-chrome/70 mb-4">
+      Clean Installs • Tight Lines • Real Protection
+    </p>
+
+    <div class="flex flex-col items-center gap-3 mb-4">
+      <span class="font-display text-3xl sm:text-4xl md:text-5xl tracking-[0.28em] uppercase">
+        Services
+      </span>
+      <div class="h-[2px] w-16 bg-redline/80"></div>
+    </div>
+
+    <p class="max-w-2xl mx-auto text-sm sm:text-base text-chrome/85 leading-relaxed mb-8">
+      From full color-change wraps to stealth PPF, ceramic, and tint — everything is set up to make
+      your car look right under every light and stay protected on the road.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="index.html#contact"
+        class="font-display text-xs tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Lock In A Spot
+      </a>
+      <a
+        href="#services"
+        class="text-xs tracking-[0.3em] uppercase btn-trapezoid-outline"
+      >
+        View All Services
+      </a>
+    </div>
+
+  </section>
+</main>
+
+<!-- MAIN SERVICES -->
+<section id="services" class="relative bg-black/90 border-t border-white/10 py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase text-chrome/70 mb-3">
+          Primary Services
+        </p>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl tracking-[0.22em] uppercase">
+          Built Around How You Drive
+        </h2>
+        <p class="mt-4 max-w-xl text-sm sm:text-base text-chrome/80 leading-relaxed">
+          Four core services that cover the look, protection, and daily experience of your car.
+          You choose how loud or low-key — we dial in the film, finish, and details.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid gap-8 md:grid-cols-2">
+
+      <!-- Wraps -->
+      <div class="relative overflow-hidden border border-white/10 bg-white/5 p-8 sm:p-9">
+        <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-redline/10 blur-2xl opacity-70"></div>
+
+        <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+          Full & Partial
+        </p>
+        <h3 class="font-display text-xl sm:text-2xl tracking-[0.22em] uppercase mb-4">
+          Color Change Wraps
+        </h3>
+
+        <p class="text-sm sm:text-base text-chrome/85 leading-relaxed mb-4">
+          Complete color swaps, two-tone layouts, and accent pieces that transform the car without
+          touching factory paint. Satin, gloss, matte, metallic, color-shift — all installed with
+          tight seams and clean edges.
+        </p>
+
+        <ul class="text-xs sm:text-sm text-chrome/80 space-y-2 mb-6">
+          <li>• Full body wraps, roofs, mirrors, spoilers, and accents</li>
+          <li>• Premium films from top brands only</li>
+          <li>• Designed around body lines for a factory-plus look</li>
+        </ul>
+
+        <a
+          href="index.html#contact"
+          class="inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+        >
+          Talk Wrap Options
+        </a>
+      </div>
+
+      <!-- PPF -->
+      <div class="relative overflow-hidden border border-white/10 bg-white/5 p-8 sm:p-9">
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-white/10 blur-2xl opacity-70"></div>
+
+        <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+          Stealth & Gloss
+        </p>
+        <h3 class="font-display text-xl sm:text-2xl tracking-[0.22em] uppercase mb-4">
+          Paint Protection Film (PPF)
+        </h3>
+
+        <p class="text-sm sm:text-base text-chrome/85 leading-relaxed mb-4">
+          Self-healing PPF installs that protect against rock chips, road rash, and UV — without
+          killing the look. Go stealth for a satin OEM finish or gloss for a wet, deep shine.
+        </p>
+
+        <ul class="text-xs sm:text-sm text-chrome/80 space-y-2 mb-6">
+          <li>• Front-end, track pack, or full-body coverage</li>
+          <li>• Wrapped edges wherever possible for cleaner lines</li>
+          <li>• High-impact zones mapped around how you actually drive</li>
+        </ul>
+
+        <a
+          href="index.html#contact"
+          class="inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+        >
+          Protect The Paint
+        </a>
+      </div>
+
+      <!-- Ceramic Coating -->
+      <div class="relative overflow-hidden border border-white/10 bg-white/5 p-8 sm:p-9">
+        <div class="absolute -top-14 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-white/5 blur-3xl opacity-80"></div>
+
+        <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+          Hydrophobic • Gloss
+        </p>
+        <h3 class="font-display text-xl sm:text-2xl tracking-[0.22em] uppercase mb-4">
+          Ceramic Coating
+        </h3>
+
+        <p class="text-sm sm:text-base text-chrome/85 leading-relaxed mb-4">
+          Long-term protection that makes washing easier and keeps the car looking freshly detailed.
+          Applied over paint, PPF, and certain wrap finishes for deeper gloss or richer satin.
+        </p>
+
+        <ul class="text-xs sm:text-sm text-chrome/80 space-y-2 mb-6">
+          <li>• Multi-year coatings depending on package</li>
+          <li>• Added chemical and UV resistance</li>
+          <li>• Easier maintenance with better water behavior</li>
+        </ul>
+
+        <a
+          href="index.html#contact"
+          class="inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+        >
+          Coat My Setup
+        </a>
+      </div>
+
+      <!-- Tint -->
+      <div class="relative overflow-hidden border border-white/10 bg-white/5 p-8 sm:p-9">
+        <div class="absolute -bottom-8 right-0 w-40 h-40 rounded-full bg-redline/15 blur-3xl opacity-80"></div>
+
+        <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+          Ceramic • Dyed
+        </p>
+        <h3 class="font-display text-xl sm:text-2xl tracking-[0.22em] uppercase mb-4">
+          Window Tint
+        </h3>
+
+        <p class="text-sm sm:text-base text-chrome/85 leading-relaxed mb-4">
+          Ceramic and dyed films that cut heat, glare, and harsh light without ruining visibility.
+          Matched shades front to back so the car looks intentional, not random.
+        </p>
+
+        <ul class="text-xs sm:text-sm text-chrome/80 space-y-2 mb-6">
+          <li>• Full car tint, windshield strips, and sunroofs</li>
+          <li>• Heat rejection focused for Texas summers</li>
+          <li>• Clean installs with tight borders and no trashy edges</li>
+        </ul>
+
+        <a
+          href="index.html#contact"
+          class="inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+        >
+          Dial In Shade
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- SPECIALTY ADD-ONS -->
+<section class="relative bg-jet border-t border-white/10 py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase text-chrome/70 mb-3">
+          Specialty & Add-Ons
+        </p>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl tracking-[0.22em] uppercase">
+          Other Services
+        </h2>
+      
+      </div>
+    </div>
+
+    <!-- Smaller services grid -->
+    <div class="grid gap-8 md:grid-cols-3">
+
+      <!-- Starlights -->
+      <div class="relative border border-white/10 bg-black/70 p-7 flex flex-col justify-between">
+        <div>
+          <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+            Interior
+          </p>
+          <h3 class="font-display text-lg tracking-[0.2em] uppercase mb-3">
+            Starlight Headliners
+          </h3>
+          <p class="text-sm text-chrome/85 leading-relaxed mb-4">
+            Fiber-optic starlights built into the headliner for that night-drive lounge feel.
+            Patterns, constellations, and color modes tuned to how you want the cabin to feel.
+          </p>
+        </div>
+        <p class="text-[0.7rem] tracking-[0.22em] uppercase text-chrome/70">
+          Pairs well with: tint, wraps, ceramic
+        </p>
+      </div>
+
+      <!-- Powder Coating -->
+      <div class="relative border border-white/10 bg-black/70 p-7 flex flex-col justify-between">
+        <div>
+          <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+            Wheels & Hardware
+          </p>
+          <h3 class="font-display text-lg tracking-[0.2em] uppercase mb-3">
+            Powder Coating
+          </h3>
+          <p class="text-sm text-chrome/85 leading-relaxed mb-4">
+            Durable finishes for wheels, calipers, and select parts. Color-matched or contrasted
+            against your wrap/paint so the whole car feels like one build, not a bunch of pieces.
+          </p>
+        </div>
+        <p class="text-[0.7rem] tracking-[0.22em] uppercase text-chrome/70">
+          Pairs well with: wraps, PPF
+        </p>
+      </div>
+
+      <!-- Chrome Deletes -->
+      <div class="relative border border-white/10 bg-black/70 p-7 flex flex-col justify-between">
+        <div>
+          <p class="text-[0.7rem] tracking-[0.3em] uppercase text-chrome/60 mb-2">
+            Trim & Details
+          </p>
+          <h3 class="font-display text-lg tracking-[0.2em] uppercase mb-3">
+            Chrome Deletes
+          </h3>
+          <p class="text-sm text-chrome/85 leading-relaxed mb-4">
+            Blackout packages for window trim, badges, grills, and brightwork so the car doesn’t
+            have random chrome fighting the rest of the build.
+          </p>
+        </div>
+        <p class="text-[0.7rem] tracking-[0.22em] uppercase text-chrome/70">
+          Pairs well with: wraps, tint
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <p class="text-sm sm:text-base text-chrome/80 max-w-xl">
+        Not sure what combo makes the most sense for your car? Send a few photos and how you use it
+        daily — we’ll map out a build that looks good and actually makes sense.
+      </p>
+
+      <a
+        href="index.html#contact"
+        class="font-display text-xs tracking-[0.35em] uppercase btn-trapezoid"
+      >
+        Plan My Build
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <div
+      class="w-full h-full bg-cover bg-center"
+      style="background-image: url('assets/footer-bg.jpg');"
+    ></div>
+    <div class="absolute inset-0 bg-black/85"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[1fr_1.4fr] gap-16 items-center">
+    
+    <!-- LEFT: Quick links -->
+    <div class="text-center md:text-left">
+      <h3 class="text-sm tracking-[0.3em] uppercase text-chrome mb-6">
+        Quick Links
+      </h3>
+
+      <nav class="space-y-3 text-sm">
+        <a href="index.html#home" class="block text-chrome/80 hover:text-white transition">Home</a>
+        <a href="index.html#about" class="block text-chrome/80 hover:text-white transition">About</a>
+        <a href="#services" class="block text-chrome/80 hover:text-white transition">Services</a>
+        <a href="gallery.html#gallery" class="block text-chrome/80 hover:text-white transition">Gallery</a>
+        <a href="index.html#contact" class="block text-chrome/80 hover:text-white transition">Contact</a>
+      </nav>
+    </div>
+
+    <!-- RIGHT: Centered brand block -->
+    <div class="flex flex-col items-center text-center">
+
+      <!-- Logo -->
+      <i class="fa-solid fa-infinity text-2xl text-redline mb-2"></i>
+
+      <div class="font-display text-sm tracking-[0.45em] uppercase">
+        INFINITE
+      </div>
+
+      <div class="mt-1 flex items-center gap-3">
+        <span class="h-px w-6 bg-white/60"></span>
+        <span class="font-display text-xs tracking-[0.4em] uppercase">WRAPS</span>
+        <span class="h-px w-6 bg-white/60"></span>
+      </div>
+
+      <p class="mt-6 max-w-xl text-sm sm:text-base text-chrome/85 leading-relaxed">
+        Clean installs, precise lines, and finishes that hit under any light.
+        From full color-change wraps and stealth PPF to tint and subtle branding,
+        Infinite Wraps delivers protection and presence without compromise.
+      </p>
+
+      <div class="flex items-center gap-6 mt-6">
+        <a href="https://instagram.com/infinitewraps" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@infinitewraps" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://www.facebook.com/infinitewraps" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom credit bar -->
+  <div class="relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center space-y-2">
+      <p class="text-[0.65rem] tracking-[0.3em] uppercase text-chrome/60">
+        © <span id="year"></span> Infinite Wraps • All Rights Reserved
+      </p>
+
+      <a
+        href="https://echelon.com"
+        target="_blank"
+        class="text-[0.65rem] tracking-[0.35em] uppercase text-chrome/60 hover:text-redline transition"
+      >
+        Custom Coded by <span class="font-display">Echelon</span>
+      </a>
+
+      <!-- Payment Methods -->
+      <div class="relative border-t border-white/10 mt-4">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap items-center justify-center gap-6 opacity-80">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonpay.svg" alt="Amazon Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/americanexpress.svg" alt="American Express" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/applepay.svg" alt="Apple Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discover.svg" alt="Discover" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlepay.svg" alt="Google Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mastercard.svg" alt="Mastercard" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/paypal.svg" alt="PayPal" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shopify.svg" alt="Shop Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visa.svg" alt="Visa" class="h-6 invert opacity-90">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

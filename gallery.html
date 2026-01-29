@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wrap Gallery • Infinite Wraps</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jet: "#050608",
+            chrome: "#d4d4d8",
+            redline: "#a30000", /* darker red */
+          },
+          fontFamily: {
+            display: ["Orbitron", "sans-serif"],
+            body: ["Inter", "system-ui", "sans-serif"],
+          },
+          keyframes: {
+            marquee: {
+              "0%": { transform: "translateX(0%)" },
+              "100%": { transform: "translateX(-50%)" },
+            },
+          },
+          animation: {
+            marquee: "marquee 25s linear infinite",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Custom files -->
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body class="bg-jet text-white font-body overflow-x-hidden">
+
+<!-- VIDEO BACKGROUND -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <video autoplay muted loop playsinline class="w-full h-full object-cover">
+    <source src="assets/m4.mp4" type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,212,216,0.18),_transparent_55%)]"></div>
+</div>
+
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-30 bg-black/70 backdrop-blur-md border-b border-white/10">
+  <div class="relative max-w-7xl mx-auto px-6 py-4 grid grid-cols-[auto_1fr_auto_1fr_auto] items-center">
+
+    <!-- LOGO -->
+    <div class="col-start-1 md:col-auto flex justify-center md:justify-start">
+      <a
+        href="index.html#home"
+        class="nav-logo inline-flex flex-col items-center leading-none
+               absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+               md:static md:transform-none"
+      >
+        <!-- Infinity icon -->
+        <div class="mb-1">
+          <i class="fa-solid fa-infinity nav-infinity-icon"></i>
+        </div>
+
+        <!-- INFINITE / WRAPS -->
+        <div class="text-center">
+          <div class="font-display text-[0.7rem] tracking-[0.45em] uppercase">
+            INFINITE
+          </div>
+
+          <div class="mt-1 flex items-center justify-center gap-2">
+            <span class="h-px w-6 bg-white/75"></span>
+            <span class="font-display text-[0.6rem] tracking-[0.4em] uppercase">
+              WRAPS
+            </span>
+            <span class="h-px w-6 bg-white/75"></span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- spacer -->
+    <div class="hidden md:block"></div>
+
+    <!-- CENTER NAV -->
+    <nav class="hidden md:flex justify-center gap-10 text-xs tracking-[0.25em] uppercase">
+      <a href="index.html#home" class="hover:text-redline transition">Home</a>
+      <a href="index.html#about" class="hover:text-redline transition">About</a>
+      <a href="index.html#services" class="hover:text-redline transition">Services</a>
+      <a href="#gallery" class="hover:text-redline transition">Gallery</a>
+    </nav>
+
+    <!-- spacer -->
+    <div class="hidden md:block"></div>
+
+    <!-- RIGHT ACTIONS -->
+    <div class="flex justify-end items-center gap-4 col-start-5">
+      <a
+        href="https://instagram.com/infinitewraps"
+        target="_blank"
+        class="hidden md:inline-flex items-center gap-2 text-chrome/80 hover:text-redline transition"
+      >
+        <i class="fa-brands fa-instagram text-base"></i>
+      </a>
+
+      <a
+        href="index.html#contact"
+        class="hidden md:inline-flex font-display text-[0.65rem] tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Contact
+      </a>
+
+      <button
+        id="nav-toggle"
+        class="md:hidden w-9 h-9 border border-white/40 hover:border-redline transition"
+        aria-label="Open menu"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE FULLSCREEN NAV -->
+<div id="mobile-nav" class="fixed inset-0 z-40 hidden bg-black/95">
+  <div class="h-full flex flex-col">
+
+    <!-- top -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <div class="leading-none">
+        <div class="font-display text-sm tracking-[0.4em] uppercase">INFINITE</div>
+        <div class="text-[0.6rem] tracking-[0.35em] text-chrome/70 uppercase">Wraps</div>
+      </div>
+      <button id="nav-close" class="w-9 h-9 border border-white/40 hover:border-redline transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- links -->
+    <nav class="flex-1 flex flex-col items-center justify-center gap-8 text-sm tracking-[0.3em] uppercase">
+      <a href="index.html#home" class="nav-link hover:text-redline">Home</a>
+      <a href="index.html#about" class="nav-link hover:text-redline">About</a>
+      <a href="index.html#services" class="nav-link hover:text-redline">Services</a>
+      <a href="#gallery" class="nav-link hover:text-redline">Wrap Gallery</a>
+
+      <a
+        href="index.html#contact"
+        class="mt-6 font-display text-xs tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Get a Quote
+      </a>
+
+      <a
+        href="https://instagram.com/infinitewraps"
+        target="_blank"
+        class="mt-4 flex items-center gap-2 text-chrome/80 hover:text-redline transition"
+      >
+        <i class="fa-brands fa-instagram"></i>
+        <span class="text-xs tracking-[0.25em] uppercase">Instagram</span>
+      </a>
+    </nav>
+
+  </div>
+</div>
+
+<!-- HERO -->
+<main class="min-h-[70vh] flex items-center justify-center text-center px-4 pt-28 pb-10">
+  <section class="max-w-3xl">
+
+    <p class="text-xs tracking-[0.3em] uppercase text-chrome/70 mb-4">
+      Recent Work • On The Street
+    </p>
+
+    <div class="flex flex-col items-center gap-3 mb-4">
+      <span class="font-display text-3xl sm:text-4xl md:text-5xl tracking-[0.28em] uppercase">
+        Wrap Gallery
+      </span>
+      <div class="h-[2px] w-16 bg-redline/80"></div>
+    </div>
+
+    <p class="max-w-2xl mx-auto text-sm sm:text-base text-chrome/85 leading-relaxed mb-8">
+      Full color changes, stealth PPF, tint, and branding work — all installed with tight lines and
+      finishes that hit under any light.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="index.html#contact"
+        class="font-display text-xs tracking-[0.3em] uppercase btn-trapezoid"
+      >
+        Lock In Your Spot
+      </a>
+      <a
+        href="#gallery"
+        class="text-xs tracking-[0.3em] uppercase btn-trapezoid-outline"
+      >
+        Scroll The Gallery
+      </a>
+    </div>
+
+  </section>
+</main>
+
+<!-- GALLERY -->
+<section id="gallery" class="relative bg-black/90 border-t border-white/10 py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase text-chrome/70 mb-3">
+          Wrap Gallery
+        </p>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl tracking-[0.22em] uppercase">
+          Builds We’ve Put On The Road
+        </h2>
+        <p class="mt-4 max-w-xl text-sm sm:text-base text-chrome/80 leading-relaxed">
+          Real cars, real installs. From subtle refreshes to full transformations, this is a look
+          at how Infinite Wraps shows up in the wild.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid: IMAGE ONLY -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Item 1 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/1.png"
+          alt="Wrap gallery image 1"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Item 2 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/2.png"
+          alt="Wrap gallery image 2"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Item 3 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/3.png"
+          alt="Wrap gallery image 3"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Item 4 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/4.png"
+          alt="Wrap gallery image 4"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Item 5 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/5.png"
+          alt="Wrap gallery image 5"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <!-- Item 6 -->
+      <div class="group relative overflow-hidden bg-white/5 border border-white/10">
+        <img
+          src="assets/10.png"
+          alt="Wrap gallery image 6"
+          class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+    </div>
+
+    <!-- CTA under grid -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <p class="text-sm sm:text-base text-chrome/80 max-w-xl">
+        Have a specific color or film in mind? Send us reference photos and we’ll match the finish,
+        film brand, and install plan to your build.
+      </p>
+
+      <a
+        href="index.html#contact"
+        class="font-display text-xs tracking-[0.35em] uppercase btn-trapezoid"
+      >
+        Start A Build
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <div
+      class="w-full h-full bg-cover bg-center"
+      style="background-image: url('assets/footer-bg.jpg');"
+    ></div>
+    <div class="absolute inset-0 bg-black/85"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[1fr_1.4fr] gap-16 items-center">
+    
+    <!-- LEFT: Quick links -->
+    <div class="text-center md:text-left">
+      <h3 class="text-sm tracking-[0.3em] uppercase text-chrome mb-6">
+        Quick Links
+      </h3>
+
+      <nav class="space-y-3 text-sm">
+        <a href="#home" class="block text-chrome/80 hover:text-white transition">Home</a>
+        <a href="#about" class="block text-chrome/80 hover:text-white transition">About</a>
+        <a href="#services" class="block text-chrome/80 hover:text-white transition">Services</a>
+        <a href="#gallery" class="block text-chrome/80 hover:text-white transition">Gallery</a>
+        <a href="#contact" class="block text-chrome/80 hover:text-white transition">Contact</a>
+      </nav>
+    </div>
+
+    <!-- RIGHT: Centered brand block -->
+    <div class="flex flex-col items-center text-center">
+
+      <!-- Logo -->
+      <i class="fa-solid fa-infinity text-2xl text-white mb-2"></i>
+
+      <div class="font-display text-sm tracking-[0.45em] uppercase">
+        INFINITE
+      </div>
+
+      <div class="mt-1 flex items-center gap-3">
+        <span class="h-px w-6 bg-white/60"></span>
+        <span class="font-display text-xs tracking-[0.4em] uppercase">WRAPS</span>
+        <span class="h-px w-6 bg-white/60"></span>
+      </div>
+
+      <p class="mt-6 max-w-xl text-sm sm:text-base text-chrome/85 leading-relaxed">
+        Clean installs, precise lines, and finishes that hit under any light.
+        From full color-change wraps and stealth PPF to tint and subtle branding,
+        Infinite Wraps delivers protection and presence without compromise.
+      </p>
+
+      <div class="flex items-center gap-6 mt-6">
+        <a href="https://instagram.com/infinitewraps_tx" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@infinitewraps_tx" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61587159002937&mibextid=wwXIfr&rdid=2IEzljzt4Nx6VIl6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17kdeZHVLx%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="text-chrome/80 hover:text-redline text-xl transition">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom credit bar -->
+  <div class="relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center space-y-2">
+      <p class="text-[0.65rem] tracking-[0.3em] uppercase text-chrome/60">
+        © <span id="year"></span> Infinite Wraps • All Rights Reserved
+      </p>
+
+      <a
+        href="https://echelon.com"
+        target="_blank"
+        class="text-[0.65rem] tracking-[0.35em] uppercase text-chrome/60 hover:text-redline transition"
+      >
+        Custom Coded by <span class="font-display">Echelon</span>
+      </a>
+
+      <!-- Payment Methods -->
+      <div class="relative border-t border-white/10 mt-4">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap items-center justify-center gap-6 opacity-80">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonpay.svg" alt="Amazon Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/americanexpress.svg" alt="American Express" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/applepay.svg" alt="Apple Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discover.svg" alt="Discover" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlepay.svg" alt="Google Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mastercard.svg" alt="Mastercard" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/paypal.svg" alt="PayPal" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shopify.svg" alt="Shop Pay" class="h-6 invert opacity-90">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visa.svg" alt="Visa" class="h-6 invert opacity-90">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
