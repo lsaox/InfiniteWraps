@@ -418,9 +418,3 @@ header nav {
 }
 /* Move logo 2.5px to the right on mobile + iPad */
 /* Nudge header logo 2.5px to the right on mobile + iPad */
-@media (max-width: 1024px) {
-  header .nav-logo {
-    position: relative;
-    transform: translateX(2.5px);
-  }
-}
