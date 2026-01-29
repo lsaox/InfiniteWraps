@@ -57,36 +57,34 @@
 
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 w-full z-30 bg-black/70 backdrop-blur-md border-b border-white/10">
-  <div class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-[auto_1fr_auto_1fr_auto] items-center">
-
-<!-- LOGO -->
-<!-- LOGO -->
-<a href="#home" class="nav-logo inline-flex flex-col items-center leading-none">
-  <!-- Infinity icon on top -->
-  <div class="mb-1">
-    <i class="fa-solid fa-infinity nav-infinity-icon"></i>
-  </div>
-
-  <!-- INFINITE / WRAPS stack -->
-  <div class="text-center">
-    <div class="font-display text-[0.7rem] tracking-[0.45em] uppercase">
-      INFINITE
-    </div>
-
-    <div class="mt-1 flex items-center justify-center gap-2">
-      <span class="h-px w-6 bg-white/75"></span>
-      <span class="font-display text-[0.6rem] tracking-[0.4em] uppercase">
-        WRAPS
-      </span>
-      <span class="h-px w-6 bg-white/75"></span>
-    </div>
-  </div>
-</a>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center md:grid md:grid-cols-[auto_1fr_auto_1fr_auto]">
 
 
+    <!-- LOGO -->
+    <a href="#home" class="nav-logo inline-flex flex-col items-center leading-none mx-auto md:mx-0">
+      <!-- Infinity icon on top -->
+      <div class="mb-1">
+        <i class="fa-solid fa-infinity nav-infinity-icon"></i>
+      </div>
+
+      <!-- INFINITE / WRAPS stack -->
+      <div class="text-center">
+        <div class="font-display text-[0.7rem] tracking-[0.45em] uppercase">
+          INFINITE
+        </div>
+
+        <div class="mt-1 flex items-center justify-center gap-2">
+          <span class="h-px w-6 bg-white/75"></span>
+          <span class="font-display text-[0.6rem] tracking-[0.4em] uppercase">
+            WRAPS
+          </span>
+          <span class="h-px w-6 bg-white/75"></span>
+        </div>
+      </div>
+    </a>
 
     <!-- spacer -->
-    <div></div>
+    <div class="hidden md:block"></div>
 
     <!-- CENTER NAV -->
     <nav class="hidden md:flex justify-center gap-10 text-xs tracking-[0.25em] uppercase">
@@ -97,7 +95,7 @@
     </nav>
 
     <!-- spacer -->
-    <div></div>
+    <div class="hidden md:block"></div>
 
     <!-- RIGHT ACTIONS -->
     <div class="flex justify-end items-center gap-4">
@@ -128,6 +126,7 @@
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
+
 
   </div>
 </header>
